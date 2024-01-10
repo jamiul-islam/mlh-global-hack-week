@@ -3,12 +3,12 @@
  * reference: https://www.youtube.com/watch?v=KoWqdEACyLI
  */
 
-// car driving game
+// drone driving game
 var line1;
 var line2;
 var line3;
 
-var car;
+var drone;
 
 var isLeft;
 var isRight;
@@ -21,7 +21,7 @@ function setup() {
   line2 = 200;
   line3 = 400;
 
-  car = {
+  drone = {
     x: 200,
     speed: 1,
   };
@@ -37,7 +37,7 @@ function draw() {
   //draw the tarmac
   fill(100);
   noStroke();
-  rect(100, 0, 250, 300);
+  rect(100, 0, 200, 400);
 
   //draw the road lines
   stroke(255);
@@ -45,15 +45,29 @@ function draw() {
   line(200, line2, 200, line2 + 75);
   line(200, line3, 200, line3 + 75);
 
-  //draw the car
-  fill(255, 0, 0);
+  // draw a propeller(circle) beside the drone
+  fill(0);
+  stroke(0);
+  ellipse(drone.x - 20, 350, 30); // left-back propeller
+  ellipse(drone.x + 20, 350, 30); // right-back propeller
+  ellipse(drone.x - 20, 300, 30); // left-front propeller
+  ellipse(drone.x + 20, 300, 30); // right-front propeller
+  //draw the drone
+  fill(255);
   noStroke();
-  rect(car.x - 10, 300, 20, 50);
+  rect(drone.x - 10, 300, 20, 50);
+  /**
+   * draw drone name "DJI" in the middle of the drone
+   * the text should be gray
+   */
+  fill(100);
+  textSize(10);
+  text("DJI", drone.x - 7.5, 320, 20, 50);
 
   //updating the road lines
-  line1 += car.speed;
-  line2 += car.speed;
-  line3 += car.speed;
+  line1 += drone.speed;
+  line2 += drone.speed;
+  line3 += drone.speed;
 
   if (line1 >= 400) {
     line1 = -200;
@@ -67,25 +81,25 @@ function draw() {
     line3 = -200;
   }
 
-  //Move the car
+  //Move the drone
   if (isLeft) {
-    car.x -= 3;
+    drone.x -= 3;
   }
 
   if (isRight) {
-    car.x += 3;
+    drone.x += 3;
   }
 
-  //stop the car going off of the road
-  car.x = constrain(car.x, 100 + 10, 300 - 10);
+  //stop the drone going off of the road
+  drone.x = constrain(drone.x, 100 + 10, 300 - 10);
 
   if (isAccelerating) {
-    car.speed *= 1.01;
+    drone.speed *= 1.01;
   } else {
-    car.speed *= 0.99;
+    drone.speed *= 0.99;
   }
 
-  car.speed = constrain(car.speed, 1, 10);
+  drone.speed = constrain(drone.speed, 1, 10);
 }
 
 function keyPressed() {
