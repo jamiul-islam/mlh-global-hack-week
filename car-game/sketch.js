@@ -1,3 +1,8 @@
+/**
+ * learned about the canvas and how to draw shapes using the following video
+ * reference: https://www.youtube.com/watch?v=KoWqdEACyLI
+ */
+
 // car driving game
 var line1;
 var line2;
@@ -32,7 +37,7 @@ function draw() {
   //draw the tarmac
   fill(100);
   noStroke();
-  rect(100, 0, 200, 400);
+  rect(100, 0, 250, 300);
 
   //draw the road lines
   stroke(255);
