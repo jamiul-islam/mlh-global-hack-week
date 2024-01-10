@@ -52,7 +52,7 @@ function draw() {
   ellipse(drone.x + 20, 350, 30); // right-back propeller
   ellipse(drone.x - 20, 300, 30); // left-front propeller
   ellipse(drone.x + 20, 300, 30); // right-front propeller
-  //draw the drone
+  //draw the drone body
   fill(255);
   noStroke();
   rect(drone.x - 10, 300, 20, 50);
